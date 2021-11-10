@@ -49,11 +49,7 @@ class UserFacadeTest {
     @Test
     void getUserFacade() {
     }
-<<<<<<< HEAD
 /*
-=======
-
->>>>>>> parent of b50ccc4 (visual)
     @Test
     void getVeryfiedUser() throws AuthenticationException {
         String username = user.getUserName();
@@ -71,9 +67,5 @@ class UserFacadeTest {
 
 
     }
-<<<<<<< HEAD
-
  */
-=======
->>>>>>> parent of b50ccc4 (visual)
 }

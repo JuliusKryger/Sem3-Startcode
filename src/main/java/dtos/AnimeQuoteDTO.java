@@ -2,6 +2,8 @@ package dtos;
 
 public class AnimeQuoteDTO {
 
+    /** This is the free API used for the Anime quotes "https://animechan.vercel.app/guide" **/
+
     //This is our variables.
     private String quote;
 

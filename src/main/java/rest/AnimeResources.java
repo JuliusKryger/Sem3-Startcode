@@ -34,6 +34,7 @@ public class AnimeResources {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    //@RolesAllowed("user") //Should this be available to all or only to one?
     public String animeContent() throws IOException {
         Gson gson = new Gson();
         String fact = HttpUtils.fetchData("https://anime-facts-rest-api.herokuapp.com/api/v1/demon_slayer/3");
@@ -45,6 +46,4 @@ public class AnimeResources {
         String combinedJSON = gson.toJson(apiMergeDTO);
         return combinedJSON;
     }
-
-
 }

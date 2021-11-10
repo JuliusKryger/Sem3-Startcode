@@ -2,6 +2,7 @@ package rest;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,11 +16,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.nimbusds.jose.shaded.json.JSONObject;
 import dtos.AnimeFactDTO;
 import dtos.AnimeQuoteDTO;
 import dtos.ApiMergeDTO;
 import utils.EMF_Creator;
 import utils.HttpUtils;
+import utils.Utility;
 
 @Path("anime")
 public class AnimeResources {
@@ -32,7 +37,8 @@ public class AnimeResources {
     public String animeContent() throws IOException {
         Gson gson = new Gson();
         String fact = HttpUtils.fetchData("https://anime-facts-rest-api.herokuapp.com/api/v1/demon_slayer/3");
-        AnimeFactDTO animeFactDTO = gson.fromJson(fact, AnimeFactDTO.class);
+        JsonObject jsonObject = new JsonParser().parse(fact).getAsJsonObject();
+        AnimeFactDTO animeFactDTO = gson.fromJson(jsonObject.get("data"), AnimeFactDTO.class);
         String quote = HttpUtils.fetchData("https://animechan.vercel.app/api/random");
         AnimeQuoteDTO animeQuoteDTO = gson.fromJson(quote, AnimeQuoteDTO.class);
         ApiMergeDTO apiMergeDTO = new ApiMergeDTO(animeFactDTO, animeQuoteDTO);

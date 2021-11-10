@@ -13,6 +13,7 @@ public class UserFacade {
     private static UserFacade instance;
 
     private UserFacade() {
+        /** Maybe we can check if username is already taken, and would be fun to check password "Strongness" as well for added security. **/
     }
 
     public static UserFacade getUserFacade(EntityManagerFactory _emf) {
